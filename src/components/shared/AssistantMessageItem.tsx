@@ -11,25 +11,26 @@ const AssistantMessageItem: React.FC<AssistantItemProps> = ({ text, timestamp })
 		<>
 			<Box
 				sx={{
-					maxWidth: "60%",
-					padding: "0.6rem 1.2rem",
-					borderRadius: "12px",
-					backgroundColor: "#E2E8F0", // Màu sắc khác để phân biệt
+					maxWidth: { xs: "85%", sm: "75%", md: "60%" },
+					padding: "0.8rem 1.4rem",
+					borderRadius: "16px",
+					backgroundColor: "action.hover",
+					border: 1,
+					borderColor: "divider",
 					wordWrap: "break-word",
 					display: "flex",
 					flexDirection: "column",
-					alignSelf: "flex-start", // Căn lề trái cho AssistantItem
+					alignSelf: "flex-start",
+					boxShadow: 1,
 				}}
 			>
-				<Typography variant="body1" color="#000">
-					{" "}
-					{/* Màu chữ khác */}
+				<Typography variant="body1" color="text.primary">
 					{text}
 				</Typography>
 			</Box>
 			<Typography
 				variant="caption"
-				sx={{ alignSelf: "flex-start", marginTop: "0.4rem", color: "#aaa9bc" }}
+				sx={{ alignSelf: "flex-start", marginTop: "0.4rem", color: "text.secondary" }}
 			>
 				{timestamp}
 			</Typography>

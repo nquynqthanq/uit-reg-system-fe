@@ -11,20 +11,23 @@ const MessageItem: React.FC<MessageItemProps> = ({ text, timestamp }) => {
 		<>
 			<Box
 				sx={{
-					maxWidth: "60%",
-					padding: "0.6rem 1.2rem",
-					borderRadius: "12px",
-					backgroundColor: "#2F6BFF",
+					maxWidth: { xs: "85%", sm: "75%", md: "60%" },
+					padding: "0.8rem 1.4rem",
+					borderRadius: "16px",
+					backgroundColor: "primary.main",
 					wordWrap: "break-word",
 					display: "flex",
 					flexDirection: "column",
+					boxShadow: 1,
 				}}
 			>
-				<Typography variant="body1">{text}</Typography>
+				<Typography variant="body1" sx={{ color: "white" }}>
+					{text}
+				</Typography>
 			</Box>
 			<Typography
 				variant="caption"
-				sx={{ alignSelf: "flex-end", marginTop: "0.4rem", color: "#aaa9bc" }}
+				sx={{ alignSelf: "flex-end", marginTop: "0.4rem", color: "text.secondary" }}
 			>
 				{timestamp}
 			</Typography>

@@ -1,54 +1,60 @@
-import { Box } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
-import Header from "./components/Header";
-import { useState } from "react";
-import HistorySidebar from "./components/HistorySidebar";
+import Layout from "./components/layout/Layout";
+import { useAuth } from "./contexts/AuthContext";
+
+// Protected Route wrapper
+// const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+// 	const { isAuthenticated, isLoading } = useAuth();
+
+// 	if (isLoading) {
+// 		return null; // Or a loading spinner
+// 	}
+
+// 	return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
+// };
+
+// Public Only Route (redirect to home if already authenticated)
+const PublicOnlyRoute = ({ children }: { children: React.ReactNode }) => {
+	const { isAuthenticated, isLoading } = useAuth();
+
+	if (isLoading) {
+		return null;
+	}
+
+	return !isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
+};
 
 function App() {
-	const [open, setOpen] = useState(false);
-
-	const handleDrawerToggle = () => {
-		setOpen(!open);
-	};
-
-	const handleCreateChat = () => {
-		console.log("Create a new chat");
-	};
-
 	return (
-		<Box sx={{ display: "flex", height: "100vh", overflow: "hidden" }}>
-			<HistorySidebar open={open} onClose={() => setOpen(false)} />
+		<Routes>
+			<Route element={<Layout />}>
+				<Route path="/" element={<Home />} />
+			</Route>
 
-			<Box
-				sx={{
-					flexGrow: 1,
-					transition: "margin 0.3s",
-					paddingTop: "64px",
-					paddingLeft: "2rem",
-					paddingRight: "2rem",
-					overflowY: "auto",
-				}}
-			>
-				<Header
-					onToggleDrawer={handleDrawerToggle}
-					onCreateChat={handleCreateChat}
-					isSidebarOpen={open}
-				/>
+			<Route
+				path="/login"
+				element={
+					<PublicOnlyRoute>
+						<Login />
+					</PublicOnlyRoute>
+				}
+			/>
 
-				<main>
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/signup" element={<Signup />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
-				</main>
-			</Box>
-		</Box>
+			<Route
+				path="/signup"
+				element={
+					<PublicOnlyRoute>
+						<Signup />
+					</PublicOnlyRoute>
+				}
+			/>
+
+			<Route path="*" element={<NotFound />} />
+		</Routes>
 	);
 }
 
