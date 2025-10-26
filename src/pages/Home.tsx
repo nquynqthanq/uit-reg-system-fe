@@ -1,41 +1,23 @@
 import React, { useEffect, useRef } from "react";
+import { Box, Stack, Typography, Container } from "@mui/material";
 import ChatInput from "../components/ChatInput";
 import MessageItem from "../components/shared/MessageItem";
-import { Stack } from "@mui/material";
 import AssistantMessageItem from "../components/shared/AssistantMessageItem";
+import { useChat } from "../contexts/ChatContext";
+import { useLanguage } from "../contexts/LanguageContext";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 
-interface Message {
-	text: string;
-	timestamp: Date;
-	sender: "user" | "assistant"; // Thêm loại sender để phân biệt người gửi
-}
-
-const Home = () => {
-	const [messages, setMessages] = React.useState<Message[]>([]);
-	const [loading, setLoading] = React.useState<boolean>(false);
+const Home: React.FC = () => {
+	const { currentChat, sendMessage, isLoading } = useChat();
+	const { t } = useLanguage();
 	const endOfMessagesRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, [messages]);
+	}, [currentChat?.messages]);
 
-	const handleSend = (message: string) => {
-		const newMessage: Message = {
-			text: message,
-			timestamp: new Date(),
-			sender: "user",
-		};
-		setMessages((prevMessages) => [...prevMessages, newMessage]);
-		setLoading(true);
-		setTimeout(() => {
-			const autoReply: Message = {
-				text: "Đây là tin nhắn trả lời tự động từ trợ lý.",
-				timestamp: new Date(),
-				sender: "assistant",
-			};
-			setMessages((prevMessages) => [...prevMessages, autoReply]);
-			setLoading(false);
-		}, 5000);
+	const handleSend = async (message: string) => {
+		await sendMessage(message);
 	};
 
 	const formatTimestamp = (timestamp: Date) => {
@@ -47,41 +29,81 @@ const Home = () => {
 	};
 
 	return (
-		<div
-			style={{
-				width: "100%",
+		<Box
+			sx={{
 				display: "flex",
-				justifyContent: "center",
-				flexDirection: "row",
+				flexDirection: "column",
+				position: "relative",
+				height: "calc(100vh - 120px)",
 			}}
 		>
-			<Stack
-				spacing={1}
-				sx={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "flex-end",
-					maxWidth: "60%",
-					overflowY: "auto",
-					padding: "6rem",
-					flex: 1,
-				}}
-			>
-				{messages.map((msg, index) =>
-					msg.sender === "user" ? (
-						<MessageItem key={index} text={msg.text} timestamp={formatTimestamp(msg.timestamp)} />
-					) : (
-						<AssistantMessageItem
-							key={index}
-							text={msg.text}
-							timestamp={formatTimestamp(msg.timestamp)}
-						/>
-					)
+			<Container maxWidth="md" sx={{ flexGrow: 1 }}>
+				{!currentChat || currentChat.messages.length === 0 ? (
+					// Empty State
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							justifyContent: "center",
+							minHeight: "60vh",
+							textAlign: "center",
+							px: 2,
+						}}
+					>
+						<Box
+							sx={{
+								width: 80,
+								height: 80,
+								borderRadius: "50%",
+								bgcolor: "primary.main",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								mb: 3,
+							}}
+						>
+							<SchoolRoundedIcon sx={{ fontSize: 48, color: "white" }} />
+						</Box>
+						<Typography variant="h4" fontWeight={700} gutterBottom>
+							{t("chat.emptyChat")}
+						</Typography>
+						<Typography variant="body1" color="text.secondary" maxWidth="sm">
+							{t("chat.emptyState")}
+						</Typography>
+					</Box>
+				) : (
+					// Messages
+					<Stack spacing={2} sx={{ py: 3 }}>
+						{currentChat.messages.map((msg, index) =>
+							msg.sender === "user" ? (
+								<Box
+									key={index}
+									sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}
+								>
+									<MessageItem text={msg.text} timestamp={formatTimestamp(msg.timestamp)} />
+								</Box>
+							) : (
+								<Box
+									key={index}
+									sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
+								>
+									<AssistantMessageItem
+										text={msg.text}
+										timestamp={formatTimestamp(msg.timestamp)}
+									/>
+								</Box>
+							)
+						)}
+						<div ref={endOfMessagesRef} />
+					</Stack>
 				)}
-				<div ref={endOfMessagesRef} />
-			</Stack>
-			<ChatInput onSend={handleSend} onLoading={loading} />
-		</div>
+			</Container>
+			{/* Chat Input */}
+			<Container maxWidth="md">
+				<ChatInput onSend={handleSend} onLoading={isLoading} />
+			</Container>
+		</Box>
 	);
 };
 
