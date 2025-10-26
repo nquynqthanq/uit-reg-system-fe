@@ -1,6 +1,11 @@
-# UITRegSystem Frontend
+<h1 style="text-align:center;">UIT Retrieve Regulation System</h2>
+<p style="text-align:center;">
+  <img src="/src/assets/svgs/logo.svg" alt="UIT Regulation" width="200" height="200" />
+</p>
 
-Modern React + TypeScript frontend application built with Vite, featuring a comprehensive development setup with best practices.
+<p style="text-align: justify">
+  <strong>UIT Retrieve Regulation System</strong> is a modern web application built with React, TypeScript, and Vite that allows students and staff of the <strong>University of Information Technology (UIT)</strong> to easily search and access university regulations and policies. It features a clean, responsive interface with multi-language support (EN/VI), dark/light themes, and a secure authentication system, providing a fast and user-friendly experience for academic information retrieval.
+</p>
 
 ## 🚀 Tech Stack
 
@@ -10,49 +15,52 @@ Modern React + TypeScript frontend application built with Vite, featuring a comp
 - **Routing**: React Router v6
 - **HTTP Client**: Axios
 - **Styling**: CSS + MUI Theme
-- **State Management**: React Hooks (custom hooks included)
+- **State Management**: React Context API + Custom Hooks
+- **Internationalization**: Multi-language support (EN/VI)
+- **Theme**: Dark/Light mode with custom theme context
 - **Code Quality**: ESLint + Prettier
 - **Git Hooks**: Husky + lint-staged
 - **Commit Convention**: Commitlint (Conventional Commits)
 
+## ✨ Features
+
+- 🔐 **Authentication System**: Complete auth flow with login/signup pages
+- 💬 **Chat Interface**: Interactive chat system with message history
+- 🌍 **Internationalization**: Multi-language support (English & Vietnamese)
+- 🎨 **Theme Customization**: Dark/Light mode with persistent preferences
+- 📱 **Responsive Design**: Mobile-first approach with responsive layouts
+- 🎯 **Type Safety**: Full TypeScript coverage for type-safe development
+- 🔄 **State Management**: Context API for global state management
+- 🛡️ **Error Handling**: Error boundaries for graceful error handling
+- 🎭 **Custom Hooks**: Reusable hooks for common functionalities
+- 📦 **Component Library**: Well-organized component structure with Material-UI
+
 ## 📁 Project Structure
 
 ```
-frontend/
+uit-reg-system-fe/
 ├── public/                    # Static assets
+│   └── logo.svg              # Application logo
 ├── src/
-│   ├── assets/               # Images, fonts, etc.
-│   ├── components/           # Reusable React components
-│   │   ├── shared/          # Shared components
-│   │   ├── ErrorBoundary.tsx
-│   │   ├── Header.tsx
-│   │   └── HistorySidebar.tsx
+│   ├── assets/               # Static assets
+│   ├── components/           # React components
+│   ├── contexts/             # React Context providers
 │   ├── hooks/                # Custom React hooks
-│   │   ├── useLocalStorage.ts
-│   │   ├── useWindowSize.ts
-│   │   ├── useDebounce.ts
-│   │   ├── useTheme.ts
-│   │   └── usePrevious.ts
+│   ├── locales/              # Internationalization
 │   ├── pages/                # Page components
-│   │   ├── Home.tsx
-│   │   ├── Login.tsx
-│   │   ├── Signup.tsx
-│   │   └── NotFound.tsx
+│   ├── types/                # TypeScript type definitions
 │   ├── utils/                # Utility functions
-│   │   ├── env.ts           # Environment variables
-│   │   ├── string.ts        # String utilities
-│   │   ├── date.ts          # Date utilities
-│   │   ├── storage.ts       # Storage utilities
-│   │   └── validation.ts    # Validation utilities
 │   ├── App.tsx               # Main App component
 │   ├── main.tsx              # Application entry point
-│   └── index.css             # Global styles
+│   ├── index.css             # Global styles
+│   └── vite-env.d.ts         # Vite type definitions
 ├── .env                      # Environment variables
 ├── .env.example              # Environment variables template
-├── .eslintrc.js              # ESLint configuration
-├── .prettierrc               # Prettier configuration
+├── eslint.config.js          # ESLint configuration
 ├── commitlint.config.js      # Commitlint configuration
 ├── tsconfig.json             # TypeScript configuration
+├── tsconfig.app.json         # TypeScript app configuration
+├── tsconfig.node.json        # TypeScript node configuration
 ├── vite.config.ts            # Vite configuration
 └── package.json              # Dependencies and scripts
 ```
@@ -68,7 +76,7 @@ frontend/
 
 ```bash
 git clone <repository-url>
-cd frontend
+cd uit-reg-system-fe
 ```
 
 2. Install dependencies:
@@ -88,8 +96,10 @@ cp .env.example .env
 ```env
 VITE_API_BASE_URL=http://localhost:3000/api
 VITE_API_TIMEOUT=30000
-VITE_APP_NAME=UITRegSystem
+VITE_APP_NAME=UIT_REG_SYSTEM
 ```
+
+> **Note**: Make sure the backend API is running before starting the frontend application.
 
 ## 🚀 Development
 
@@ -132,150 +142,6 @@ npm run format:check
 npm run type-check
 ```
 
-## 🎯 Path Aliases
-
-The project uses path aliases for cleaner imports:
-
-```typescript
-import Component from "@/components/Component";
-import { useCustomHook } from "@hooks";
-import { formatDate } from "@utils";
-import HomePage from "@pages/Home";
-```
-
-Available aliases:
-
-- `@/` → `./src/`
-- `@components/` → `./src/components/`
-- `@pages/` → `./src/pages/`
-- `@assets/` → `./src/assets/`
-- `@utils/` → `./src/utils/`
-- `@hooks/` → `./src/hooks/`
-
-## 🔒 Git Hooks
-
-This project uses Husky for Git hooks:
-
-### Pre-commit
-
-- Runs lint-staged to lint and format staged files
-- Ensures code quality before commits
-
-### Commit Message
-
-- Validates commit messages using commitlint
-- Follows Conventional Commits specification
-
-### Commit Message Format
-
-```
-type(scope?): subject
-
-body?
-
-footer?
-```
-
-**Types:**
-
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting)
-- `refactor`: Code refactoring
-- `perf`: Performance improvements
-- `test`: Adding/updating tests
-- `build`: Build system changes
-- `ci`: CI/CD changes
-- `chore`: Other changes
-
-**Examples:**
-
-```bash
-git commit -m "feat: add user authentication"
-git commit -m "fix: resolve login button issue"
-git commit -m "docs: update README with setup instructions"
-```
-
-## 🧩 Custom Hooks
-
-### useLocalStorage
-
-```typescript
-const [value, setValue, removeValue] = useLocalStorage("key", initialValue);
-```
-
-### useWindowSize
-
-```typescript
-const { width, height } = useWindowSize();
-```
-
-### useDebounce
-
-```typescript
-const debouncedValue = useDebounce(value, 500);
-```
-
-### useTheme
-
-```typescript
-const [theme, setTheme] = useTheme("system");
-```
-
-## 🛠️ Utilities
-
-### Environment Variables
-
-```typescript
-import { env } from "@utils";
-console.log(env.apiBaseUrl);
-```
-
-### String Utilities
-
-```typescript
-import { capitalize, truncate, kebabCase } from "@utils";
-```
-
-### Date Utilities
-
-```typescript
-import { formatDate, getRelativeTime } from "@utils";
-```
-
-### Storage Utilities
-
-```typescript
-import { storage, sessionStorage } from "@utils";
-storage.set("key", value);
-const data = storage.get("key");
-```
-
-### Validation Utilities
-
-```typescript
-import { isValidEmail, isStrongPassword } from "@utils";
-```
-
-## 🚨 Error Handling
-
-The app includes a global ErrorBoundary component that catches and displays errors gracefully:
-
-```typescript
-<ErrorBoundary>
-  <App />
-</ErrorBoundary>
-```
-
-## 🔧 Configuration Files
-
-- **vite.config.ts**: Vite configuration with path aliases
-- **tsconfig.json**: TypeScript configuration
-- **eslint.config.js**: ESLint rules
-- **.prettierrc**: Prettier formatting rules
-- **commitlint.config.js**: Commit message validation
-
 ## 📝 Available Scripts
 
 | Script                 | Description                  |
@@ -303,8 +169,8 @@ This project is licensed under the MIT License.
 
 ## 👥 Team
 
-UITRegSystem Development Team
+UIT Development Team
 
 ## 📞 Support
 
-For support, email support@uitregsystem.com or create an issue in the repository.
+For support, email nguyenqthangwork@gmail.com or create an issue in the repository.
