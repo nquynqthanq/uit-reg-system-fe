@@ -16,6 +16,7 @@ interface ChatContextType {
 	selectChat: (chatId: string) => void;
 	sendMessage: (message: string) => Promise<void>;
 	deleteChat: (chatId: string) => void;
+	clearAllChats: () => void;
 	searchHistory: (query: string) => ChatSession[];
 }
 
@@ -172,6 +173,12 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 		setCurrentChat((current) => (current?.id === chatId ? null : current));
 	}, []);
 
+	const clearAllChats = useCallback(() => {
+		setChatHistory([]);
+		setCurrentChat(null);
+		localStorage.removeItem("chatHistory");
+	}, []);
+
 	const searchHistory = useCallback(
 		(query: string): ChatSession[] => {
 			if (!query.trim()) return chatHistory;
@@ -196,6 +203,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 				selectChat,
 				sendMessage,
 				deleteChat,
+				clearAllChats,
 				searchHistory,
 			}}
 		>

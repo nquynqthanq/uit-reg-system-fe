@@ -59,7 +59,7 @@ const ChatHistoryItem: React.FC<ChatHistoryItemProps> = ({
 				selected={isActive}
 				onClick={() => onSelect(chat.id)}
 				sx={{
-					borderRadius: 2,
+					borderRadius: 1,
 					mx: 1,
 					"&.Mui-selected": {
 						bgcolor: "action.selected",

@@ -31,6 +31,23 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onLoading }) => {
 						borderRadius: "30px",
 						padding: "0.5rem 0.5rem 0.5rem 2rem",
 						width: "100%",
+						backgroundColor: (theme) =>
+							theme.palette.mode === "dark" ? "rgba(30, 30, 30, 0.6)" : "rgba(255, 255, 255, 0.6)",
+						backdropFilter: "blur(10px)",
+						border: (theme) =>
+							theme.palette.mode === "dark"
+								? "1px solid rgba(255, 255, 255, 0.1)"
+								: "1px solid rgba(0, 0, 0, 0.1)",
+						"& fieldset": {
+							borderColor: "transparent",
+						},
+						"&:hover fieldset": {
+							borderColor: "transparent",
+						},
+						"&.Mui-focused fieldset": {
+							borderColor: "primary.main",
+							borderWidth: "1px",
+						},
 						"& textarea": {
 							"&::-webkit-scrollbar": {
 								display: "none",

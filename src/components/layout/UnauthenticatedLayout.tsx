@@ -5,14 +5,16 @@ import UnauthenticatedHeader from "../navigation/UnauthenticatedHeader";
 
 const UnauthenticatedLayout: React.FC = () => {
 	return (
-		<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+		<Box sx={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
 			<UnauthenticatedHeader />
 			<Box
 				component="main"
 				sx={{
 					flexGrow: 1,
-					pt: 8,
 					bgcolor: "background.default",
+					position: "relative",
+					overflow: "hidden",
+					pt: 7,
 				}}
 			>
 				<Outlet />

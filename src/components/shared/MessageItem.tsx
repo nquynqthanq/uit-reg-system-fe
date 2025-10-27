@@ -18,7 +18,6 @@ const MessageItem: React.FC<MessageItemProps> = ({ text, timestamp }) => {
 					wordWrap: "break-word",
 					display: "flex",
 					flexDirection: "column",
-					boxShadow: 1,
 				}}
 			>
 				<Typography variant="body1" sx={{ color: "white" }}>

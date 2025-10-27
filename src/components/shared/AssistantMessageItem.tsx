@@ -21,7 +21,6 @@ const AssistantMessageItem: React.FC<AssistantItemProps> = ({ text, timestamp })
 					display: "flex",
 					flexDirection: "column",
 					alignSelf: "flex-start",
-					boxShadow: 1,
 				}}
 			>
 				<Typography variant="body1" color="text.primary">

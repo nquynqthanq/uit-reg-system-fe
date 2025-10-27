@@ -21,7 +21,10 @@ export const vi = {
 		home: "Trang chủ",
 		history: "Lịch sử",
 		settings: "Cài đặt",
-		newChat: "Cuộc trò chuyện mới",
+		newChat: "Chat",
+		expandSidebar: "Mở rộng thanh bên",
+		collapseSidebar: "Thu nhỏ thanh bên",
+		shareChat: "Chia sẻ chat",
 	},
 
 	// Auth
@@ -56,9 +59,9 @@ export const vi = {
 
 	// Chat
 	chat: {
-		inputPlaceholder: "Nhập câu hỏi của bạn...",
+		inputPlaceholder: "Nhập câu hỏi của bạn",
 		newChat: "Cuộc trò chuyện mới",
-		searchHistory: "Tìm kiếm lịch sử...",
+		searchHistory: "Tìm kiếm lịch sử",
 		noHistory: "Chưa có lịch sử trò chuyện",
 		today: "Hôm nay",
 		yesterday: "Hôm qua",
@@ -78,11 +81,25 @@ export const vi = {
 		language: "Ngôn ngữ",
 		lightMode: "Sáng",
 		darkMode: "Tối",
+		systemMode: "Hệ thống",
 		vietnamese: "Tiếng Việt",
 		english: "English",
 		account: "Tài khoản",
 		profile: "Hồ sơ",
 		preferences: "Tùy chọn",
+		interface: "Giao diện",
+		dataControl: "Kiểm soát dữ liệu",
+		accountInfo: "Thông tin tài khoản",
+		editProfile: "Chỉnh sửa hồ sơ",
+		changePassword: "Đổi mật khẩu",
+		storageUsed: "Lượng lưu trữ đã sử dụng",
+		deleteAllChats: "Xóa tất cả cuộc trò chuyện",
+		deleteAllChatsConfirm: "Bạn có chắc chắn muốn xóa tất cả cuộc trò chuyện?",
+		deleteAccount: "Xóa tài khoản",
+		deleteAccountConfirm: "Bạn có chắc chắn muốn xóa tài khoản? Hành động này không thể hoàn tác.",
+		deleteAccountWarning: "Cảnh báo: Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn.",
+		themeMode: "Chế độ màu",
+		languagePreference: "Ngôn ngữ",
 	},
 
 	// User Menu
@@ -90,6 +107,12 @@ export const vi = {
 		profile: "Hồ sơ",
 		settings: "Cài đặt",
 		signOut: "Đăng xuất",
+		help: "Trợ giúp",
+		reportIssue: "Báo cáo sự cố",
+		faq: "Câu hỏi thường gặp",
+		changelog: "Nhật ký thay đổi",
+		community: "Cộng đồng",
+		shareLinks: "Chia sẻ liên kết",
 	},
 
 	// Errors
