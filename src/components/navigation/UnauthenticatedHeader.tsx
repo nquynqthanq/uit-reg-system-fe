@@ -13,8 +13,8 @@ const UnauthenticatedHeader: React.FC = () => {
 		<AppBar
 			position="fixed"
 			sx={{
-				bgcolor: "background.paper",
-				boxShadow: 1,
+				bgcolor: "background.default",
+				boxShadow: "none",
 			}}
 		>
 			<Toolbar sx={{ justifyContent: "space-between", px: { xs: 2, md: 4 } }}>

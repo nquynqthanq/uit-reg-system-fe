@@ -2,6 +2,17 @@ import React, { createContext, useContext, useState, useCallback, ReactNode, use
 import { ThemeProvider as MUIThemeProvider, createTheme } from "@mui/material";
 import type { ThemeMode } from "../types/theme";
 
+declare module "@mui/material/styles" {
+	interface Palette {
+		contrast: Palette["primary"];
+		hover: Palette["primary"];
+	}
+	interface PaletteOptions {
+		contrast?: PaletteOptions["primary"];
+		hover?: PaletteOptions["primary"];
+	}
+}
+
 interface ThemeContextType {
 	mode: ThemeMode;
 	toggleTheme: () => void;
@@ -41,12 +52,19 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 						dark: "#319795",
 					},
 					background: {
-						default: mode === "light" ? "#F7FAFC" : "#1A202C",
-						paper: mode === "light" ? "#FFFFFF" : "#2D3748",
+						default: mode === "light" ? "#F7F7F7" : "#1A1A1A",
 					},
 					text: {
 						primary: mode === "light" ? "#1A202C" : "#F7FAFC",
 						secondary: mode === "light" ? "#4A5568" : "#A0AEC0",
+					},
+					contrast: {
+						main: mode === "light" ? "#333333" : "#FFFFFF",
+						light: mode === "light" ? "#666666" : "#FFFFFF",
+						dark: mode === "light" ? "#000000" : "#FFFFFF",
+					},
+					hover: {
+						main: mode === "light" ? "#E5E5E5" : "#2C2C2C",
 					},
 				},
 				typography: {

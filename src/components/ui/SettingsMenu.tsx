@@ -45,11 +45,10 @@ const SettingsMenu: React.FC = () => {
 				<IconButton
 					onClick={handleClick}
 					sx={{
-						ml: 1,
 						color: "text.primary",
 					}}
 				>
-					<SettingsOutlinedIcon color="primary" />
+					<SettingsOutlinedIcon />
 				</IconButton>
 			</Tooltip>
 			<Menu

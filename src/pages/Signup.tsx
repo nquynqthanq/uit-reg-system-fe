@@ -82,12 +82,13 @@ const Signup: React.FC = () => {
 	return (
 		<Box
 			sx={{
-				minHeight: "100vh",
+				height: "100%",
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
 				bgcolor: "background.default",
 				py: 4,
+				overflow: "auto",
 			}}
 		>
 			<Container maxWidth="sm">

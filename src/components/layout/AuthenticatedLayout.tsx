@@ -1,81 +1,125 @@
 import React, { useState } from "react";
-import { Box, AppBar, Toolbar, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useTheme, useMediaQuery, IconButton, Tooltip, AppBar, Toolbar } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-// import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
-import AuthenticatedSidebar, { DRAWER_WIDTH } from "../navigation/AuthenticatedSidebar";
-import Logo from "../shared/Logo";
-// import { useChat } from "../../contexts/ChatContext";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import DrawOutlinedIcon from "@mui/icons-material/DrawOutlined";
+import AuthenticatedSidebar from "../navigation/AuthenticatedSidebar";
+import { COLLAPSED_WIDTH, DRAWER_WIDTH } from "@/constants/AuthenticationConstant";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useChat } from "@/contexts/ChatContext";
 
 const AuthenticatedLayout: React.FC = () => {
 	const theme = useTheme();
+	const { t } = useLanguage();
+	const { createNewChat, currentChat } = useChat();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-	const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
-	// const { createNewChat } = useChat();
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-	const handleDrawerToggle = () => {
-		setSidebarOpen(!sidebarOpen);
+	const handleToggleSidebar = () => {
+		if (isMobile) {
+			setSidebarOpen((prev) => !prev);
+		} else {
+			setSidebarCollapsed((prev) => !prev);
+		}
 	};
 
-	// const handleNewChat = () => {
-	// 	createNewChat();
-	// };
+	const handleCloseSidebar = () => {
+		if (isMobile) {
+			setSidebarOpen(false);
+		}
+	};
+
+	const handleShareChat = async () => {
+		if (currentChat) {
+			const chatUrl = `${window.location.origin}/chat/${currentChat.id}`;
+			try {
+				await navigator.clipboard.writeText(chatUrl);
+				// Có thể thêm toast notification ở đây
+				console.log("Link copied to clipboard!");
+			} catch (error) {
+				console.error("Failed to copy link:", error);
+			}
+		}
+	};
+
+	const handleNewChat = () => {
+		createNewChat();
+	};
 
 	return (
-		<Box sx={{ display: "flex", minHeight: "100vh" }}>
-			<AuthenticatedSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+		<Box sx={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+			<AuthenticatedSidebar
+				collapsed={sidebarCollapsed}
+				open={isMobile ? sidebarOpen : true}
+				onToggle={handleToggleSidebar}
+				onClose={handleCloseSidebar}
+				isMobile={isMobile}
+			/>
 
 			<Box
 				sx={{
 					flexGrow: 1,
 					display: "flex",
 					flexDirection: "column",
-					ml: !isMobile && sidebarOpen ? `${DRAWER_WIDTH}px` : 0,
+					ml: isMobile ? 0 : sidebarCollapsed ? `${COLLAPSED_WIDTH}px` : `${DRAWER_WIDTH}px`,
 					transition: theme.transitions.create(["margin"], {
 						easing: theme.transitions.easing.sharp,
-						duration: theme.transitions.duration.leavingScreen,
+						duration: theme.transitions.duration.enteringScreen,
 					}),
+					overflow: "hidden",
 				}}
 			>
-				{/* Top AppBar */}
-				<AppBar
-					position="fixed"
-					sx={{
-						bgcolor: "background.paper",
-						boxShadow: 1,
-						ml: !isMobile && sidebarOpen ? `${DRAWER_WIDTH}px` : 0,
-						width: !isMobile && sidebarOpen ? `calc(100% - ${DRAWER_WIDTH}px)` : "100%",
-						transition: theme.transitions.create(["width", "margin"], {
-							easing: theme.transitions.easing.sharp,
-							duration: theme.transitions.duration.leavingScreen,
-						}),
-					}}
-				>
-					<Toolbar sx={{ justifyContent: "space-between" }}>
-						<Box sx={{ display: "flex", alignItems: "center" }}>
-							<IconButton color="primary" edge="start" onClick={handleDrawerToggle}>
-								<MenuRoundedIcon />
-							</IconButton>
-						</Box>
+				{/* Mobile Header */}
+				{isMobile && (
+					<AppBar
+						position="fixed"
+						sx={{
+							bgcolor: "background.default",
+							boxShadow: "none",
+							borderBottom: 1,
+							borderColor: "divider",
+						}}
+					>
+						<Toolbar sx={{ justifyContent: "space-between", px: 2 }}>
+							{/* Left: Menu Button */}
+							<Tooltip title={t("nav.expandSidebar")}>
+								<IconButton onClick={handleToggleSidebar} sx={{ color: "contrast.main" }}>
+									<MenuRoundedIcon />
+								</IconButton>
+							</Tooltip>
 
-						<Logo />
+							{/* Right: Action Buttons */}
+							<Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+								<Tooltip title={t("nav.newChat")}>
+									<IconButton onClick={handleNewChat} sx={{ color: "contrast.main" }}>
+										<DrawOutlinedIcon />
+									</IconButton>
+								</Tooltip>
 
-						{/* <Box sx={{ display: "flex", alignItems: "center" }}>
-							<IconButton color="primary" onClick={handleNewChat}>
-								<AddCircleOutlineRoundedIcon />
-							</IconButton>
-						</Box> */}
-					</Toolbar>
-				</AppBar>
+								<Tooltip title={t("nav.shareChat")}>
+									<IconButton
+										onClick={handleShareChat}
+										sx={{ color: "contrast.main" }}
+										disabled={!currentChat}
+									>
+										<ShareRoundedIcon />
+									</IconButton>
+								</Tooltip>
+							</Box>
+						</Toolbar>
+					</AppBar>
+				)}
 
-				{/* Main Content */}
 				<Box
 					component="main"
 					sx={{
 						flexGrow: 1,
-						pt: 8,
 						bgcolor: "background.default",
-						minHeight: "100vh",
+						position: "relative",
+						overflow: "hidden",
+						pt: isMobile ? 7 : 0,
 					}}
 				>
 					<Outlet />

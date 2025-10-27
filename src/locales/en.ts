@@ -23,7 +23,10 @@ export const en: TranslationKeys = {
 		home: "Home",
 		history: "History",
 		settings: "Settings",
-		newChat: "New Chat",
+		newChat: "Chat",
+		expandSidebar: "Expand sidebar",
+		collapseSidebar: "Collapse sidebar",
+		shareChat: "Share chat",
 	},
 
 	// Auth
@@ -58,9 +61,9 @@ export const en: TranslationKeys = {
 
 	// Chat
 	chat: {
-		inputPlaceholder: "Enter your question...",
+		inputPlaceholder: "Enter your question",
 		newChat: "New Chat",
-		searchHistory: "Search history...",
+		searchHistory: "Search history",
 		noHistory: "No chat history",
 		today: "Today",
 		yesterday: "Yesterday",
@@ -80,11 +83,26 @@ export const en: TranslationKeys = {
 		language: "Language",
 		lightMode: "Light",
 		darkMode: "Dark",
+		systemMode: "System",
 		vietnamese: "Tiếng Việt",
 		english: "English",
 		account: "Account",
 		profile: "Profile",
 		preferences: "Preferences",
+		interface: "Appearance",
+		dataControl: "Data Control",
+		accountInfo: "Account Information",
+		editProfile: "Edit Profile",
+		changePassword: "Change Password",
+		storageUsed: "Storage Used",
+		deleteAllChats: "Delete All Conversations",
+		deleteAllChatsConfirm: "Are you sure you want to delete all conversations?",
+		deleteAccount: "Delete Account",
+		deleteAccountConfirm:
+			"Are you sure you want to delete your account? This action cannot be undone.",
+		deleteAccountWarning: "Warning: Deleting your account will permanently remove all your data.",
+		themeMode: "Theme Mode",
+		languagePreference: "Language",
 	},
 
 	// User Menu
@@ -92,6 +110,12 @@ export const en: TranslationKeys = {
 		profile: "Profile",
 		settings: "Settings",
 		signOut: "Sign Out",
+		help: "Help",
+		reportIssue: "Report Issue",
+		faq: "FAQ",
+		changelog: "Changelog",
+		community: "Community",
+		shareLinks: "Share Links",
 	},
 
 	// Errors
