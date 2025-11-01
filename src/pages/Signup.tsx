@@ -14,25 +14,25 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
-import { useAuth } from "../contexts/AuthContext";
-import { useLanguage } from "../contexts/LanguageContext";
-import type { SignupCredentials } from "../types/auth";
+import { useAuth } from "@hooks/useAuth";
+import { useLanguage } from "@contexts/LanguageContext";
 
 const Signup: React.FC = () => {
 	const navigate = useNavigate();
 	const { signup } = useAuth();
 	const { t } = useLanguage();
 
-	const [credentials, setCredentials] = useState<SignupCredentials>({
+	const [credentials, setCredentials] = useState<SignupRequest>({
 		name: "",
+		username: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
 	});
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [confirmPassword, setConfirmPassword] = useState<string>("");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCredentials({
@@ -47,12 +47,7 @@ const Signup: React.FC = () => {
 		setError("");
 
 		// Validation
-		if (
-			!credentials.name ||
-			!credentials.email ||
-			!credentials.password ||
-			!credentials.confirmPassword
-		) {
+		if (!credentials.name || !credentials.email || !credentials.password || !credentials.username) {
 			setError(t("validation.required"));
 			return;
 		}
@@ -62,7 +57,7 @@ const Signup: React.FC = () => {
 			return;
 		}
 
-		if (credentials.password !== credentials.confirmPassword) {
+		if (credentials.password !== confirmPassword) {
 			setError(t("validation.passwordMismatch"));
 			return;
 		}
@@ -133,6 +128,18 @@ const Signup: React.FC = () => {
 
 						<TextField
 							fullWidth
+							label={t("auth.username")}
+							name="username"
+							type="text"
+							value={credentials.username}
+							onChange={handleChange}
+							placeholder={t("placeholder.username")}
+							sx={{ mb: 2.5 }}
+							autoComplete="username"
+						/>
+
+						<TextField
+							fullWidth
 							label={t("auth.email")}
 							name="email"
 							type="email"
@@ -173,8 +180,8 @@ const Signup: React.FC = () => {
 							label={t("auth.confirmPassword")}
 							name="confirmPassword"
 							type={showConfirmPassword ? "text" : "password"}
-							value={credentials.confirmPassword}
-							onChange={handleChange}
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
 							placeholder="••••••••"
 							sx={{ mb: 3 }}
 							autoComplete="new-password"

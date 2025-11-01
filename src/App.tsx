@@ -2,9 +2,10 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/layout/Layout";
-import { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "./hooks/useAuth";
 
 // Protected Route wrapper
 // const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -49,6 +50,15 @@ function App() {
 				element={
 					<PublicOnlyRoute>
 						<Signup />
+					</PublicOnlyRoute>
+				}
+			/>
+
+			<Route
+				path="/reset-password"
+				element={
+					<PublicOnlyRoute>
+						<ResetPassword />
 					</PublicOnlyRoute>
 				}
 			/>

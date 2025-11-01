@@ -16,6 +16,7 @@ export const en: TranslationKeys = {
 		close: "Close",
 		submit: "Submit",
 		loading: "Loading...",
+		back: "Back",
 	},
 
 	// Navigation
@@ -34,6 +35,8 @@ export const en: TranslationKeys = {
 		signIn: "Sign In",
 		signUp: "Sign Up",
 		signOut: "Sign Out",
+		emailOrUsername: "Email or Username",
+		username: "Username",
 		email: "Email",
 		password: "Password",
 		confirmPassword: "Confirm Password",
@@ -57,6 +60,7 @@ export const en: TranslationKeys = {
 		passwordTooShort: "Password must be at least 8 characters",
 		passwordMismatch: "Passwords do not match",
 		invalidCredentials: "Invalid email or password",
+		invalidOTP: "Invalid OTP code",
 	},
 
 	// Chat
@@ -129,8 +133,34 @@ export const en: TranslationKeys = {
 
 	// Placeholders
 	placeholder: {
-		email: "example@uit.edu.vn",
-		name: "John Doe",
-		search: "Search...",
+		email: "Please enter your email",
+		emailOrUsername: "Please enter your email or username",
+		name: "Please enter your full name",
+		search: "Please enter your search query",
+		username: "Please enter your username",
+	},
+
+	// Reset Password
+	resetPassword: {
+		title: "Reset Password",
+		subtitle: "Follow the steps below to reset your password",
+		stepEmail: "Email",
+		stepOTP: "Verify OTP",
+		stepNewPassword: "New Password",
+		stepComplete: "Complete",
+		emailInstruction: "Enter your email address to receive the OTP code",
+		otpInstruction: "We've sent a 6-digit verification code to",
+		newPasswordInstruction: "Create a strong password for your account",
+		sendOTP: "Send OTP",
+		verifyOTP: "Verify OTP",
+		resetPassword: "Reset Password",
+		backToLogin: "Back to Login",
+		otpCode: "OTP Code",
+		newPassword: "New Password",
+		didntReceiveCode: "Didn't receive the code?",
+		resendOTP: "Resend OTP",
+		successTitle: "Password Reset Successful!",
+		successMessage:
+			"Your password has been reset successfully. You can now login with your new password.",
 	},
 };

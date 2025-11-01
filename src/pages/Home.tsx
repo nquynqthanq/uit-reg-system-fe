@@ -88,7 +88,7 @@ const Home: React.FC = () => {
 					) : (
 						// Messages
 						<Stack spacing={2} sx={{ py: 4, px: 2 }}>
-							{currentChat.messages.map((msg, index) =>
+							{currentChat.messages.map((msg: Message, index: number) =>
 								msg.sender === "user" ? (
 									<Box
 										key={index}

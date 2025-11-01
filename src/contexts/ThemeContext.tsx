@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode, useMemo } from "react";
 import { ThemeProvider as MUIThemeProvider, createTheme } from "@mui/material";
-import type { ThemeMode } from "../types/theme";
 
 declare module "@mui/material/styles" {
 	interface Palette {

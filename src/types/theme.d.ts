@@ -2,10 +2,10 @@
  * Theme Types
  */
 
-export type ThemeMode = "light" | "dark";
+type ThemeMode = "light" | "dark";
 
-export interface ThemeContextType {
+type ThemeContextType = {
 	mode: ThemeMode;
 	toggleTheme: () => void;
 	setTheme: (mode: ThemeMode) => void;
-}
+};

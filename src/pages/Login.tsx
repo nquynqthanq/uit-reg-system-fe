@@ -14,17 +14,16 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
-import { useAuth } from "../contexts/AuthContext";
-import { useLanguage } from "../contexts/LanguageContext";
-import type { LoginCredentials } from "../types/auth";
+import { useAuth } from "@hooks/useAuth";
+import { useLanguage } from "@contexts/LanguageContext";
 
 const Login: React.FC = () => {
 	const navigate = useNavigate();
 	const { login } = useAuth();
 	const { t } = useLanguage();
 
-	const [credentials, setCredentials] = useState<LoginCredentials>({
-		email: "",
+	const [credentials, setCredentials] = useState<LoginRequest>({
+		emailOrUsername: "",
 		password: "",
 	});
 	const [showPassword, setShowPassword] = useState(false);
@@ -44,7 +43,7 @@ const Login: React.FC = () => {
 		setError("");
 
 		// Basic validation
-		if (!credentials.email || !credentials.password) {
+		if (!credentials.emailOrUsername || !credentials.password) {
 			setError(t("validation.required"));
 			return;
 		}
@@ -104,14 +103,14 @@ const Login: React.FC = () => {
 					<form onSubmit={handleSubmit}>
 						<TextField
 							fullWidth
-							label={t("auth.email")}
-							name="email"
-							type="email"
-							value={credentials.email}
+							label={t("auth.emailOrUsername")}
+							name="emailOrUsername"
+							type="text"
+							value={credentials.emailOrUsername}
 							onChange={handleChange}
-							placeholder={t("placeholder.email")}
+							placeholder={t("placeholder.emailOrUsername")}
 							sx={{ mb: 2.5 }}
-							autoComplete="email"
+							autoComplete="username or email"
 						/>
 
 						<TextField
@@ -140,7 +139,7 @@ const Login: React.FC = () => {
 						/>
 
 						<Box sx={{ textAlign: "right", mb: 3 }}>
-							<MuiLink href="#" underline="hover" variant="body2">
+							<MuiLink component={Link} to="/reset-password" underline="hover" variant="body2">
 								{t("auth.forgotPassword")}
 							</MuiLink>
 						</Box>
