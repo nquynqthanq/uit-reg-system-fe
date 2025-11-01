@@ -18,12 +18,10 @@ import {
 	LinearProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAuth } from "../../contexts/AuthContext";
-import { useThemeContext } from "../../contexts/ThemeContext";
-import { useLanguage } from "../../contexts/LanguageContext";
-import { useChat } from "../../contexts/ChatContext";
-import type { Language } from "../../types/language";
-import type { ThemeMode } from "../../types/theme";
+import { useAuth } from "@hooks/useAuth";
+import { useThemeContext } from "@contexts/ThemeContext";
+import { useLanguage } from "@contexts/LanguageContext";
+import { useChat } from "@contexts/ChatContext";
 import { AppearanceIcon, StorageIcon, UserProfileIcon } from "@/assets/svgs";
 
 interface SettingsModalProps {

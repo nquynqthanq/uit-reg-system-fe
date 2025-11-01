@@ -5,15 +5,15 @@
 
 export const env = {
 	// API Configuration
-	apiBaseUrl: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api",
-	apiTimeout: Number(import.meta.env.VITE_API_TIMEOUT) || 30000,
+	apiBaseUrl: import.meta.env.VITE_API_BASE_URL,
+	apiTimeout: Number(import.meta.env.VITE_API_TIMEOUT),
 
 	// Application Configuration
-	appName: import.meta.env.VITE_APP_NAME || "UITRegSystem",
-	appVersion: import.meta.env.VITE_APP_VERSION || "1.0.0",
+	appName: import.meta.env.VITE_APP_NAME,
+	appVersion: import.meta.env.VITE_APP_VERSION,
 
 	// Environment
-	env: import.meta.env.VITE_ENV || "development",
+	env: import.meta.env.VITE_ENV,
 	isDev: import.meta.env.DEV,
 	isProd: import.meta.env.PROD,
 

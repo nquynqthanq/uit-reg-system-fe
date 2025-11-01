@@ -17,8 +17,8 @@ import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import HistoryRoundedIcon from "@mui/icons-material/HistoryRounded";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
-import { useAuth } from "../../contexts/AuthContext";
-import { useLanguage } from "../../contexts/LanguageContext";
+import { useAuth } from "@hooks/useAuth";
+import { useLanguage } from "@contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import SettingsModal from "./SettingsModal";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
@@ -32,7 +32,7 @@ const UserMenu: React.FC = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [helpAnchorEl, setHelpAnchorEl] = useState<null | HTMLElement>(null);
 	const [settingsOpen, setSettingsOpen] = useState(false);
-	const helpCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+	const helpCloseTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 	const open = Boolean(anchorEl);
 	const helpOpen = Boolean(helpAnchorEl);
 
@@ -102,7 +102,7 @@ const UserMenu: React.FC = () => {
 		<>
 			<IconButton onClick={handleClick} sx={{ p: 0.5 }}>
 				<Avatar
-					src={user.avatar}
+					src={user.profile_image_url}
 					alt={user.name}
 					sx={{
 						width: 40,

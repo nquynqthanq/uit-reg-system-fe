@@ -1,4 +1,4 @@
-<h1 style="text-align:center;">UIT Retrieve Regulation System</h2>
+<h1 style="text-align:center;">UIT Retrieve Regulation System</h1>
 <p style="text-align:center;">
   <img src="/src/assets/svgs/logo.svg" alt="UIT Regulation" width="200" height="200" />
 </p>

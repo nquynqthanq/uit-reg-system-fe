@@ -2,22 +2,22 @@
  * Chat Types
  */
 
-export interface Message {
+type Message = {
 	id: string;
 	text: string;
 	timestamp: Date;
 	sender: "user" | "assistant";
-}
+};
 
-export interface ChatSession {
+type ChatSession = {
 	id: string;
 	title: string;
 	messages: Message[];
 	createdAt: Date;
 	updatedAt: Date;
-}
+};
 
-export interface ChatContextType {
+type ChatContextType = {
 	currentChat: ChatSession | null;
 	chatHistory: ChatSession[];
 	isLoading: boolean;
@@ -26,4 +26,4 @@ export interface ChatContextType {
 	sendMessage: (message: string) => Promise<void>;
 	deleteChat: (chatId: string) => void;
 	searchHistory: (query: string) => ChatSession[];
-}
+};

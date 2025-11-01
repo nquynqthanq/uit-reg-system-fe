@@ -14,6 +14,7 @@ export const vi = {
 		close: "Đóng",
 		submit: "Gửi",
 		loading: "Đang tải...",
+		back: "Quay lại",
 	},
 
 	// Navigation
@@ -32,6 +33,8 @@ export const vi = {
 		signIn: "Đăng nhập",
 		signUp: "Đăng ký",
 		signOut: "Đăng xuất",
+		emailOrUsername: "Email hoặc tên đăng nhập",
+		username: "Tên đăng nhập",
 		email: "Email",
 		password: "Mật khẩu",
 		confirmPassword: "Xác nhận mật khẩu",
@@ -55,6 +58,7 @@ export const vi = {
 		passwordTooShort: "Mật khẩu phải có ít nhất 8 ký tự",
 		passwordMismatch: "Mật khẩu không khớp",
 		invalidCredentials: "Email hoặc mật khẩu không đúng",
+		invalidOTP: "Mã OTP không hợp lệ",
 	},
 
 	// Chat
@@ -126,9 +130,35 @@ export const vi = {
 
 	// Placeholders
 	placeholder: {
-		email: "example@uit.edu.vn",
-		name: "Nguyễn Văn A",
-		search: "Tìm kiếm...",
+		email: "Vui lòng nhập email của bạn",
+		emailOrUsername: "Vui lòng nhập email hoặc tên đăng nhập của bạn",
+		name: "Vui lòng nhập họ và tên của bạn",
+		search: "Vui lòng nhập từ khóa tìm kiếm của bạn",
+		username: "Vui lòng nhập tên đăng nhập của bạn",
+	},
+
+	// Reset Password
+	resetPassword: {
+		title: "Đặt Lại Mật Khẩu",
+		subtitle: "Làm theo các bước bên dưới để đặt lại mật khẩu",
+		stepEmail: "Email",
+		stepOTP: "Xác minh OTP",
+		stepNewPassword: "Mật khẩu mới",
+		stepComplete: "Hoàn tất",
+		emailInstruction: "Nhập địa chỉ email của bạn để nhận mã OTP",
+		otpInstruction: "Chúng tôi đã gửi mã xác minh 6 chữ số đến",
+		newPasswordInstruction: "Tạo mật khẩu mạnh cho tài khoản của bạn",
+		sendOTP: "Gửi OTP",
+		verifyOTP: "Xác minh OTP",
+		resetPassword: "Đặt lại mật khẩu",
+		backToLogin: "Quay lại đăng nhập",
+		otpCode: "Mã OTP",
+		newPassword: "Mật khẩu mới",
+		didntReceiveCode: "Không nhận được mã?",
+		resendOTP: "Gửi lại OTP",
+		successTitle: "Đặt Lại Mật Khẩu Thành Công!",
+		successMessage:
+			"Mật khẩu của bạn đã được đặt lại thành công. Bây giờ bạn có thể đăng nhập bằng mật khẩu mới.",
 	},
 };
 

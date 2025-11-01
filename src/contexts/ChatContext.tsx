@@ -6,7 +6,6 @@ import React, {
 	ReactNode,
 	useEffect,
 } from "react";
-import type { ChatSession, Message } from "../types/chat";
 
 interface ChatContextType {
 	currentChat: ChatSession | null;

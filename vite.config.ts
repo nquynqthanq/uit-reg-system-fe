@@ -20,11 +20,17 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
-			"@components": path.resolve(__dirname, "./src/components"),
-			"@pages": path.resolve(__dirname, "./src/pages"),
 			"@assets": path.resolve(__dirname, "./src/assets"),
-			"@utils": path.resolve(__dirname, "./src/utils"),
+			"@components": path.resolve(__dirname, "./src/components"),
+			"@constants": path.resolve(__dirname, "./src/constants"),
+			"@contexts": path.resolve(__dirname, "./src/contexts"),
 			"@hooks": path.resolve(__dirname, "./src/hooks"),
+			"@locales": path.resolve(__dirname, "./src/locales"),
+			"@pages": path.resolve(__dirname, "./src/pages"),
+			"@services": path.resolve(__dirname, "./src/services"),
+			"@store": path.resolve(__dirname, "./src/store"),
+			"@types": path.resolve(__dirname, "./src/types"),
+			"@utils": path.resolve(__dirname, "./src/utils"),
 		},
 	},
 });

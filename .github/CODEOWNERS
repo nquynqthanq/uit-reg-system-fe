@@ -1,0 +1,33 @@
+# Code owners for UIT Retrieve Regulation System Frontend
+# These owners will be automatically requested for review when someone opens a pull request.
+# Learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners - will be requested for review on all PRs
+* @nguyenquocthang
+
+# Frontend specific
+/src/**/*.tsx @nguyenquocthang
+/src/**/*.ts @nguyenquocthang
+
+# Component files
+/src/components/** @nguyenquocthang
+
+# Context and state management
+/src/contexts/** @nguyenquocthang
+
+# UI and styling
+/src/assets/** @nguyenquocthang
+/src/index.css @nguyenquocthang
+
+# Configuration files
+*.config.js @nguyenquocthang
+*.config.ts @nguyenquocthang
+tsconfig*.json @nguyenquocthang
+package.json @nguyenquocthang
+
+# GitHub workflows and templates
+/.github/** @nguyenquocthang
+
+# Documentation
+*.md @nguyenquocthang
+

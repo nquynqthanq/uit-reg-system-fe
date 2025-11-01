@@ -2,10 +2,10 @@
  * Language Types
  */
 
-export type Language = "en" | "vi";
+type Language = "en" | "vi";
 
-export interface LanguageContextType {
+type LanguageContextType = {
 	language: Language;
 	setLanguage: (lang: Language) => void;
 	t: (key: string) => string;
-}
+};
